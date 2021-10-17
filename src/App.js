@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       isStarted: false,
       isFinished: false,
+      isTimeUp: false,
       categories: [],
       questions: [],
       questionIndex: 0,
@@ -62,13 +63,14 @@ class App extends React.Component {
   };
 
   handleTimeUp = () => {
-    this.setState({ isFinished: true });
+    this.setState({ isFinished: true, isTimeUp: true });
   };
 
   handleTryAgain = () => {
     this.setState({
       isStarted: false,
       isFinished: false,
+      isTimeUp: false,
       questions: [],
       questionIndex: 0,
       correct: 0,
@@ -98,6 +100,7 @@ class App extends React.Component {
         <Result
           correct={this.state.correct}
           wrong={this.state.wrong}
+          isTimeUp={this.state.isTimeUp}
           onTryAgain={this.handleTryAgain}
         ></Result>
       );

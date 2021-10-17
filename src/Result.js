@@ -1,15 +1,14 @@
 import React from "react";
 
-class Result extends React.Component {
-  render() {
-    return (
-      <div>
-        <p>Correct: {this.props.correct}</p>
-        <p>Wrong: {this.props.wrong}</p>
-        <button onClick={this.props.onTryAgain}>Try Again</button>
-      </div>
-    );
-  }
+function Result(props) {
+  return (
+    <div>
+      <p>{props.isTimeUp ? "Time is up!" : "Finished"}</p>
+      <p>Correct: {props.correct}</p>
+      <p>Wrong: {props.wrong}</p>
+      <button onClick={props.onTryAgain}>Try Again</button>
+    </div>
+  );
 }
 
 export default Result;
