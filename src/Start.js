@@ -1,0 +1,72 @@
+import React from "react";
+
+class Start extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: "",
+      difficulty: "easy",
+    };
+  }
+
+  handleCategoryChange = (event) => {
+    this.setState({ category: event.target.value });
+  };
+
+  handleDifficultyChange = (event) => {
+    this.setState({ difficulty: event.target.value });
+  };
+
+  render() {
+    return (
+      <form>
+        <h2>Welcome to the Quiz App!</h2>
+        <p>Please select category and difficulty to start</p>
+        <div>
+          <label htmlFor="categories">Category</label>
+          <select
+            name="categories"
+            id="categories"
+            value={this.state.category}
+            onChange={this.handleCategoryChange}
+          >
+            {this.props.categories.map((key) => (
+              <option key={key.id} value={key.id}>
+                {key.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="difficulty">Difficulty</label>
+          <select
+            name="difficulty"
+            id="difficulty"
+            value={this.state.difficulty}
+            onChange={this.handleDifficultyChange}
+          >
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            this.props.onClick({
+              category:
+                this.state.category === ""
+                  ? this.props.categories[0].id
+                  : this.state.category,
+              difficulty: this.state.difficulty,
+            });
+          }}
+        >
+          Start
+        </button>
+      </form>
+    );
+  }
+}
+
+export default Start;
