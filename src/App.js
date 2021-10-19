@@ -13,9 +13,11 @@ class App extends React.Component {
       isTimeUp: false,
       categories: [],
       questions: [],
+      answeredQuestions: [],
       questionIndex: 0,
       correct: 0,
       wrong: 0,
+      disabled: false,
     };
   }
 
@@ -52,13 +54,17 @@ class App extends React.Component {
       });
   }
 
-  handleAnswer = (isCorrect) => {
+  handleAnswer = (isCorrect, answerIndex) => {
+    this.state.answeredQuestions.push(this.state.questionIndex, answerIndex.toString(), isCorrect);
     this.setState({
-      isFinished: this.state.questionIndex === 49,
       correct: this.state.correct + (isCorrect ? 1 : 0),
       wrong: this.state.wrong + (isCorrect ? 0 : 1),
-      questionIndex:
-        this.state.questionIndex + (this.state.questionIndex === 49 ? 0 : 1),
+    });
+  };
+
+  handleBoxClick = (boxIndex) => {
+    this.setState({
+      questionIndex: boxIndex,
     });
   };
 
@@ -72,11 +78,45 @@ class App extends React.Component {
       isFinished: false,
       isTimeUp: false,
       questions: [],
+      answeredQuestions: [],
       questionIndex: 0,
       correct: 0,
       wrong: 0,
+      disabled: false,
     });
   };
+
+  handlePrevious = () => {
+    if (this.state.questionIndex > 0) {
+      this.setState({ questionIndex: this.state.questionIndex - 1 });
+    }
+  }
+
+  handleNext = () => {
+    if (this.state.questionIndex < 49) {
+      this.setState({ questionIndex: this.state.questionIndex + 1 });
+    }
+  }
+
+  handleFinish = () => {
+    this.setState({ isFinished: true })
+  }
+
+  isAnswered = () => {
+    for (let i = 0; i < this.state.answeredQuestions.length; i = i + 3) {
+      if (this.state.answeredQuestions[i] === this.state.questionIndex) {
+        return true;
+      }
+    } return false;
+  }
+
+  answerIndex = () => {
+    if (typeof this.state.answeredQuestions.indexOf(this.state.questionIndex) === "number") {
+      return this.state.answeredQuestions[this.state.answeredQuestions.indexOf(this.state.questionIndex) + 1];
+    } else {
+      return null;
+    }
+  }
 
   render() {
     if (!this.state.isStarted) {
@@ -91,8 +131,16 @@ class App extends React.Component {
         <Question
           index={this.state.questionIndex + 1}
           value={this.state.questions[this.state.questionIndex]}
+          questions={this.state.questions}
+          answeredQuestions={this.state.answeredQuestions}
           onAnswer={this.handleAnswer}
           onTimeUp={this.handleTimeUp}
+          onPrevious={this.handlePrevious}
+          onNext={this.handleNext}
+          onFinish={this.handleFinish}
+          onBoxClick={this.handleBoxClick}
+          isDisabled={this.isAnswered()}
+          answerIndex={this.answerIndex()}
         ></Question>
       );
     } else {

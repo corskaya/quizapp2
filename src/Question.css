@@ -1,0 +1,19 @@
+.buttonCorrect{
+    background-color: #5cb85c;
+    color: black;
+}
+
+.buttonWrong{
+    background-color: #dc3545;
+    color: black;
+}
+
+.boxCorrect{
+    background-color: #5cb85c;
+    color: black;
+}
+
+.boxWrong{
+    background-color: #dc3545;
+    color: black;
+}
