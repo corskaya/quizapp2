@@ -1,7 +1,6 @@
 .boxContainer {
     width: 80%;
-    margin: auto;
-    margin-top: 50px;
+    margin: 50px auto 60px;
     text-align: center;
 }
 
@@ -15,7 +14,7 @@
 .btnBox {
     padding: 10px;
     background: var(--dark-color-b);
-    border: 0;
+    border: 1px solid var(--dark-color-b);
     border-radius: 5px;
 }
 
@@ -23,26 +22,40 @@
     background: var(--dark-color-a);
 }
 
+.currentBtnBox {
+    border: 1px solid #414141;
+}
+
 .boxCorrect{
-    padding: 10px;
     background-color: #5cb85c;
-    color: black;
-    border: 0;
+    border: 1px solid #5cb85c;
+}
+
+.currentBoxCorrect{
+    background-color: #5cb85c;
+    border: 1px solid #414141;
     border-radius: 5px;
 }
 
-.boxCorrect:hover {
+.currentBoxCorrect:hover {
     background: #28a528;
 }
 
 .boxWrong{
-    padding: 10px;
     background-color: #dd3e4e;
-    color: black;
-    border: 0;
-    border-radius: 5px;
+    border: 1px solid #dd3e4e;
 }
 
 .boxWrong:hover {
+    background: #dd1327;
+}
+
+.currentBoxWrong{
+    background-color: #dd3e4e;
+    border: 1px solid #414141;
+    border-radius: 5px;
+}
+
+.currentBoxWrong:hover {
     background: #dd1327;
 }

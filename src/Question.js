@@ -25,7 +25,7 @@ class Question extends React.Component {
     return (
       <div>
         <div className="questionTop">
-          <p className="questionIndex">{this.props.index}/50</p>
+          <p className="questionIndex">{this.props.questionIndex + 1}/50</p>
           <Time onTimeUp={this.props.onTimeUp}></Time>
         </div>
         <div className="questionContainer">
@@ -74,6 +74,7 @@ class Question extends React.Component {
           </form>
         </div>
         <Box
+          questionIndex={this.props.questionIndex}
           questions={this.props.questions}
           onBoxClick={this.props.onBoxClick}
           isDisabled={this.props.isDisabled}

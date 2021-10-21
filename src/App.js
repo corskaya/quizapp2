@@ -38,9 +38,9 @@ class App extends React.Component {
         let questions = [];
         results.forEach((result) => {
           let answers = [];
-          answers.push({ answer: result.correct_answer, isCorrect: true });
+          answers.push({ answer: decodeHtml(result.correct_answer), isCorrect: true });
           result.incorrect_answers.forEach((answer) => {
-            answers.push({ answer: answer, isCorrect: false });
+            answers.push({ answer: decodeHtml(answer), isCorrect: false });
           });
           questions.push({
             question: decodeHtml(result.question),
@@ -129,7 +129,7 @@ class App extends React.Component {
     } else if (!this.state.isFinished) {
       return (
         <Question
-          index={this.state.questionIndex + 1}
+          questionIndex={this.state.questionIndex}
           value={this.state.questions[this.state.questionIndex]}
           questions={this.state.questions}
           answeredQuestions={this.state.answeredQuestions}

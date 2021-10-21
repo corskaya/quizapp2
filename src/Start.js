@@ -6,7 +6,7 @@ class Start extends React.Component {
     super(props);
     this.state = {
       category: "",
-      difficulty: "easy",
+      difficulty: "",
     };
   }
 
