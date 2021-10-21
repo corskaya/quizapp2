@@ -13,54 +13,66 @@ class Question extends React.Component {
 
   answerCheck = (answer) => {
     if (this.props.value.answers[parseInt(this.props.answerIndex)] === answer && !answer.isCorrect) {
-      return "buttonWrong";
+      return "btnWrong";
     } else if (answer.isCorrect) {
-      return "buttonCorrect";
+      return "btnCorrect";
+    } else {
+      return "btnChoiceDisabled"
     }
   }
 
   render() {
     return (
       <div>
-        <p>{this.props.index}/50</p>
-        <Time onTimeUp={this.props.onTimeUp}></Time>
-        <p>{this.props.value.question}</p>
-        <form>
-          {this.props.value.answers.map((answer, index) => {
-            return (
+        <div className="questionTop">
+          <p className="questionIndex">{this.props.index}/50</p>
+          <Time onTimeUp={this.props.onTimeUp}></Time>
+        </div>
+        <div className="questionContainer">
+          <p className="question">{this.props.value.question}</p>
+          <form>
+            <div className="choices">
+              {this.props.value.answers.map((answer, index) => {
+                return (
+                  <button
+                    className={this.props.isDisabled ? this.answerCheck(answer) : "btnChoice"}
+                    disabled={this.props.isDisabled}
+                    key={index}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      this.props.onAnswer(answer.isCorrect, this.props.value.answers.indexOf(answer));
+                    }}
+                  >
+                    {answer.answer}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="btnToggle">
               <button
-                className={this.props.isDisabled ? this.answerCheck(answer) : null}
-                disabled={this.props.isDisabled}
-                key={index}
+                className="btnNext"
                 onClick={(e) => {
                   e.preventDefault();
-                  this.props.onAnswer(answer.isCorrect, this.props.value.answers.indexOf(answer));
+                  this.props.onPrevious();
                 }}
-              >
-                {answer.answer}
-              </button>
-            );
-          })}
-          <hr />
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              this.props.onPrevious();
-            }}
-          > &lt;Prev </button>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              this.props.onFinish();
-            }}
-          > Finish </button>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              this.props.onNext();
-            }}
-          > Next&gt; </button>
-        </form>
+              > &lt;Prev </button>
+              <button
+                className="btnNext"
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.onNext();
+                }}
+              > Next&gt; </button>
+            </div>
+            <button
+              className="btnFinish"
+              onClick={(e) => {
+                e.preventDefault();
+                this.props.onFinish();
+              }}
+            > Finish </button>
+          </form>
+        </div>
         <Box
           questions={this.props.questions}
           onBoxClick={this.props.onBoxClick}

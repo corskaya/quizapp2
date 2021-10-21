@@ -1,0 +1,48 @@
+.boxContainer {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.boxes {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(25, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.btnBox {
+    padding: 10px;
+    background: var(--dark-color-b);
+    border: 0;
+    border-radius: 5px;
+}
+
+.btnBox:hover {
+    background: var(--dark-color-a);
+}
+
+.boxCorrect{
+    padding: 10px;
+    background-color: #5cb85c;
+    color: black;
+    border: 0;
+    border-radius: 5px;
+}
+
+.boxCorrect:hover {
+    background: #28a528;
+}
+
+.boxWrong{
+    padding: 10px;
+    background-color: #dd3e4e;
+    color: black;
+    border: 0;
+    border-radius: 5px;
+}
+
+.boxWrong:hover {
+    background: #dd1327;
+}

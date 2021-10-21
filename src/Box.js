@@ -1,5 +1,5 @@
 import React from "react";
-import "./Question.css"
+import "./Box.css"
 
 class Box extends React.Component {
   constructor(props) {
@@ -14,14 +14,14 @@ class Box extends React.Component {
       if (this.props.answeredQuestions[i] === currentIndex) {
         return (this.props.answeredQuestions[i + 2] ? "boxCorrect" : "boxWrong");
       }
-    } return null;
+    } return "btnBox";
   }
 
   render() {
     return (
-      <div>
-        <p>Questions</p>
-        <form>
+      <div className="boxContainer">
+        <h3>Questions</h3>
+        <form className="boxes">
           {this.props.questions.map((question, index) => {
             return (
               <button
@@ -32,7 +32,7 @@ class Box extends React.Component {
                   this.props.onBoxClick(index);
                 }}
               >
-                {index + 1}
+                {(index + 1).toString()}
               </button>
             );
           })}
