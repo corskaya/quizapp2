@@ -1,0 +1,61 @@
+.boxContainer {
+    width: 80%;
+    margin: 50px auto 60px;
+    text-align: center;
+}
+
+.boxes {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(25, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.btnBox {
+    padding: 10px;
+    background: var(--dark-color-b);
+    border: 1px solid var(--dark-color-b);
+    border-radius: 5px;
+}
+
+.btnBox:hover {
+    background: var(--dark-color-a);
+}
+
+.currentBtnBox {
+    border: 1px solid #414141;
+}
+
+.boxCorrect{
+    background-color: #5cb85c;
+    border: 1px solid #5cb85c;
+}
+
+.currentBoxCorrect{
+    background-color: #5cb85c;
+    border: 1px solid #414141;
+    border-radius: 5px;
+}
+
+.currentBoxCorrect:hover {
+    background: #28a528;
+}
+
+.boxWrong{
+    background-color: #dd3e4e;
+    border: 1px solid #dd3e4e;
+}
+
+.boxWrong:hover {
+    background: #dd1327;
+}
+
+.currentBoxWrong{
+    background-color: #dd3e4e;
+    border: 1px solid #414141;
+    border-radius: 5px;
+}
+
+.currentBoxWrong:hover {
+    background: #dd1327;
+}

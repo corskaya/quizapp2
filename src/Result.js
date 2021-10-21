@@ -1,12 +1,17 @@
 import React from "react";
+import "./Result.css";
 
 function Result(props) {
   return (
-    <div>
-      <p>{props.isTimeUp ? "Time is up!" : "Finished"}</p>
-      <p>Correct: {props.correct}</p>
-      <p>Wrong: {props.wrong}</p>
-      <button onClick={props.onTryAgain}>Try Again</button>
+    <div className="resultContainer">
+      <h2>{props.isTimeUp ? "Time is up!" : "Finished"}</h2>
+      <p className="result">Correct: {props.correct}</p>
+      <p className="result">Wrong: {props.wrong}</p>
+      <button
+        className="btnTryAgain"
+        onClick={props.onTryAgain}>
+        Try Again
+      </button>
     </div>
   );
 }
