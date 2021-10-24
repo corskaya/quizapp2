@@ -11,11 +11,11 @@ class Start extends React.Component {
   }
 
   handleCategoryChange = (event) => {
-    this.setState({ category: event.target.value });
+    this.setState({category: event.target.value});
   };
 
   handleDifficultyChange = (event) => {
-    this.setState({ difficulty: event.target.value });
+    this.setState({difficulty: event.target.value});
   };
 
   render() {

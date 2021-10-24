@@ -26,12 +26,12 @@
     border: 1px solid #414141;
 }
 
-.boxCorrect{
+.boxCorrect {
     background-color: #5cb85c;
     border: 1px solid #5cb85c;
 }
 
-.currentBoxCorrect{
+.currentBoxCorrect {
     background-color: #5cb85c;
     border: 1px solid #414141;
     border-radius: 5px;
@@ -41,7 +41,7 @@
     background: #28a528;
 }
 
-.boxWrong{
+.boxWrong {
     background-color: #dd3e4e;
     border: 1px solid #dd3e4e;
 }
@@ -50,7 +50,7 @@
     background: #dd1327;
 }
 
-.currentBoxWrong{
+.currentBoxWrong {
     background-color: #dd3e4e;
     border: 1px solid #414141;
     border-radius: 5px;

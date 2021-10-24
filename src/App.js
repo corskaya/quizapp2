@@ -2,11 +2,11 @@ import React from "react";
 import Start from "./Start";
 import Question from "./Question";
 import Result from "./Result";
-import { decodeHtml, shuffle } from "./Utility";
+import {decodeHtml, shuffle} from "./Utility";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isStarted: false,
       isFinished: false,
@@ -23,24 +23,24 @@ class App extends React.Component {
 
   componentDidMount() {
     if (this.state.categories.length === 0) {
-      fetch("https://opentdb.com/api_category.php", { method: "GET" })
+      fetch("https://opentdb.com/api_category.php", {method: "GET"})
         .then((results) => results.json())
-        .then((data) => this.setState({ categories: data.trivia_categories }));
+        .then((data) => this.setState({categories: data.trivia_categories}));
     }
   }
 
   handleStart(options) {
     let fetchQuestionsUrl = `https://opentdb.com/api.php?amount=50&category=${options.category}&difficulty=${options.difficulty}&type=multiple`;
-    fetch(fetchQuestionsUrl, { method: "GET" })
+    fetch(fetchQuestionsUrl, {method: "GET"})
       .then((results) => results.json())
       .then((data) => {
         let results = data.results;
         let questions = [];
         results.forEach((result) => {
           let answers = [];
-          answers.push({ answer: decodeHtml(result.correct_answer), isCorrect: true });
+          answers.push({answer: decodeHtml(result.correct_answer), isCorrect: true});
           result.incorrect_answers.forEach((answer) => {
-            answers.push({ answer: decodeHtml(answer), isCorrect: false });
+            answers.push({answer: decodeHtml(answer), isCorrect: false});
           });
           questions.push({
             question: decodeHtml(result.question),
@@ -69,7 +69,7 @@ class App extends React.Component {
   };
 
   handleTimeUp = () => {
-    this.setState({ isFinished: true, isTimeUp: true });
+    this.setState({isFinished: true, isTimeUp: true});
   };
 
   handleTryAgain = () => {
@@ -88,18 +88,18 @@ class App extends React.Component {
 
   handlePrevious = () => {
     if (this.state.questionIndex > 0) {
-      this.setState({ questionIndex: this.state.questionIndex - 1 });
+      this.setState({questionIndex: this.state.questionIndex - 1});
     }
   }
 
   handleNext = () => {
     if (this.state.questionIndex < 49) {
-      this.setState({ questionIndex: this.state.questionIndex + 1 });
+      this.setState({questionIndex: this.state.questionIndex + 1});
     }
   }
 
   handleFinish = () => {
-    this.setState({ isFinished: true })
+    this.setState({isFinished: true})
   }
 
   isAnswered = () => {
@@ -107,7 +107,8 @@ class App extends React.Component {
       if (this.state.answeredQuestions[i] === this.state.questionIndex) {
         return true;
       }
-    } return false;
+    }
+    return false;
   }
 
   answerIndex = () => {
@@ -124,7 +125,7 @@ class App extends React.Component {
         <Start
           categories={this.state.categories}
           onClick={(options) => this.handleStart(options)}
-        ></Start>
+        />
       );
     } else if (!this.state.isFinished) {
       return (
@@ -141,7 +142,7 @@ class App extends React.Component {
           onBoxClick={this.handleBoxClick}
           isDisabled={this.isAnswered()}
           answerIndex={this.answerIndex()}
-        ></Question>
+        />
       );
     } else {
       return (
@@ -150,7 +151,7 @@ class App extends React.Component {
           wrong={this.state.wrong}
           isTimeUp={this.state.isTimeUp}
           onTryAgain={this.handleTryAgain}
-        ></Result>
+        />
       );
     }
   }

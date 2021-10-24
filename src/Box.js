@@ -2,27 +2,21 @@ import React from "react";
 import "./Box.css"
 
 class Box extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
   boxCheck = (currentIndex) => {
     if (this.props.questionIndex === currentIndex) {
       for (let i = 0; i < this.props.answeredQuestions.length; i = i + 3) {
         if (this.props.answeredQuestions[i] === currentIndex) {
           return (this.props.answeredQuestions[i + 2] ? "currentBoxCorrect" : "currentBoxWrong");
         }
-      } return "btnBox currentBtnBox";
-    } else {
-      for (let i = 0; i < this.props.answeredQuestions.length; i = i + 3) {
-        if (this.props.answeredQuestions[i] === currentIndex) {
-          return (this.props.answeredQuestions[i + 2] ? "btnBox boxCorrect" : "btnBox boxWrong");
-        }
-      } return "btnBox";
+      }
+      return "btnBox currentBtnBox";
     }
+    for (let i = 0; i < this.props.answeredQuestions.length; i = i + 3) {
+      if (this.props.answeredQuestions[i] === currentIndex) {
+        return (this.props.answeredQuestions[i + 2] ? "btnBox boxCorrect" : "btnBox boxWrong");
+      }
+    }
+    return "btnBox";
   }
 
   render() {

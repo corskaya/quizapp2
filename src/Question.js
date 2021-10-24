@@ -4,13 +4,6 @@ import Box from "./Box";
 import "./Question.css";
 
 class Question extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
   answerCheck = (answer) => {
     if (this.props.value.answers[parseInt(this.props.answerIndex)] === answer && !answer.isCorrect) {
       return "btnWrong";
@@ -26,7 +19,7 @@ class Question extends React.Component {
       <div>
         <div className="questionTop">
           <p className="questionIndex">{this.props.questionIndex + 1}/50</p>
-          <Time onTimeUp={this.props.onTimeUp}></Time>
+          <Time onTimeUp={this.props.onTimeUp}/>
         </div>
         <div className="questionContainer">
           <p className="question">{this.props.value.question}</p>
@@ -55,7 +48,8 @@ class Question extends React.Component {
                   e.preventDefault();
                   this.props.onPrevious();
                 }}
-              > &lt;Prev </button>
+              > &lt;Prev
+              </button>
               <button
                 className="btnNext"
                 onClick={(e) => {
@@ -70,7 +64,8 @@ class Question extends React.Component {
                 e.preventDefault();
                 this.props.onFinish();
               }}
-            > Finish </button>
+            > Finish
+            </button>
           </form>
         </div>
         <Box
@@ -79,7 +74,7 @@ class Question extends React.Component {
           onBoxClick={this.props.onBoxClick}
           isDisabled={this.props.isDisabled}
           answeredQuestions={this.props.answeredQuestions}
-        ></Box>
+        />
       </div>
     );
   }
